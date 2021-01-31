@@ -4,7 +4,9 @@ import Stopwatch from './Stopwatch';
 
 function App() {
   return (
-    <Stopwatch/>
+    <div className='timer-container'>
+      <Stopwatch/>
+    </div>
   );
 }
 
