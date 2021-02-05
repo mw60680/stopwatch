@@ -18,6 +18,7 @@ const Stopwatch = ({ heading }) => {
         reset: 'none',
         lap: 'none'
     });
+    const [laps, setLaps] = useState([]);
 
     const parseTime = () => {
         const now = Date.now();
@@ -48,6 +49,10 @@ const Stopwatch = ({ heading }) => {
         setButtonDisplay({start: 'block', stop: 'none', reset: 'none', lap: 'none'});
     }
 
+    const lapTimer = () => {
+        setLaps(laps => [...laps, time]);
+    }
+
     const wrapper = (item, display) => <div style={{display}}>{item}</div>;
 
     const start = () => wrapper(<FontAwesomeIcon icon={faPlay} onClick={startTimer} size={'2x'} />, buttonDisplay.start);
@@ -56,7 +61,19 @@ const Stopwatch = ({ heading }) => {
 
     const reset = () => wrapper(<FontAwesomeIcon icon={faRedo} onClick={resetTimer} size={'2x'} />, buttonDisplay.reset);
 
-    const lap = () => wrapper(<FontAwesomeIcon icon={faSyncAlt} size={'2x'} />, buttonDisplay.lap);
+    const lap = () => wrapper(<FontAwesomeIcon icon={faSyncAlt} onClick={lapTimer} size={'2x'} />, buttonDisplay.lap);
+
+    const lapTimes = () => {
+        return (
+            <div className='lap-times'>
+                {
+                    laps.map(item => {
+                        return (<div>{item.hrs} {item.min} {item.sec} {item.ms}</div>)
+                    })
+                }
+            </div>
+        );
+    };
 
     useEffect(() => {
         running && setTimeout(setTime(parseTime()), 10);
@@ -83,6 +100,7 @@ const Stopwatch = ({ heading }) => {
                     {reset()}
                     {lap()}
                 </div>
+                {laps.length > 0 && lapTimes()}
             </Fragment>
         );
     }
