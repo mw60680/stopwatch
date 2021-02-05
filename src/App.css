@@ -17,7 +17,7 @@
 	display: flex;
 	width: 100%;
 	max-width: 30%;
-	justify-content: space-between;
+	justify-content: space-around;
 	padding: 50px 0;
 }
 

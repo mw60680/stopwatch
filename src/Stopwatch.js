@@ -5,14 +5,17 @@ import { faPlay, faStop, faRedo } from '@fortawesome/free-solid-svg-icons';
 
 const Stopwatch = ({ heading }) => {
     const [running, setRunning] = useState(false);
-
     const [startTime, setStartTime] = useState();
-
     const [time, setTime] = useState({
         hrs: 0,
         min: 0,
         sec: 0,
         ms: 0
+    });
+    const [buttonDisplay, setButtonDisplay] = useState({
+        start: 'block',
+        stop: 'none',
+        reset: 'none'
     });
 
     const parseTime = () => {
@@ -27,29 +30,34 @@ const Stopwatch = ({ heading }) => {
         return {hrs, min, sec, ms};
     }
 
-    useEffect(() => {
-        running && setTimeout(setTime(parseTime()), 10);
-    }, [time, running])
-
     const startTimer = () => {
         setRunning(true);
         !startTime && setStartTime(Date.now());
+        setButtonDisplay({start: 'none', stop: 'block', reset: 'none'});
     }
 
     const stopTimer = () => {
         setRunning(false);
+        setButtonDisplay({start: 'block', stop: 'none', reset: 'block'});
     }
 
     const resetTimer = () => {
         setTime({hrs: 0, min: 0, sec: 0, ms: 0})
         setStartTime();
+        setButtonDisplay({start: 'block', stop: 'none', reset: 'none'});
     }
 
-    const start = () => <FontAwesomeIcon icon={faPlay} onClick={startTimer} size={'2x'}/>
+    const wrapper = (item, display) => <div style={{display}}>{item}</div>;
 
-    const stop = () => <FontAwesomeIcon icon={faStop} onClick={stopTimer} size={'2x'}/>
+    const start = () => wrapper(<FontAwesomeIcon icon={faPlay} onClick={startTimer} size={'2x'} />, buttonDisplay.start);
 
-    const reset = () => <FontAwesomeIcon icon={faRedo} onClick={resetTimer} size={'2x'}/>
+    const stop = () => wrapper(<FontAwesomeIcon icon={faStop} onClick={stopTimer} size={'2x'} />, buttonDisplay.stop);
+
+    const reset = () => wrapper(<FontAwesomeIcon icon={faRedo} onClick={resetTimer} size={'2x'} />, buttonDisplay.reset);
+
+    useEffect(() => {
+        running && setTimeout(setTime(parseTime()), 10);
+    }, [time, running]);
     
     const timer = () => {
         return (
@@ -83,10 +91,10 @@ Stopwatch.propTypes = {
      * Heading for the component - Timer heading
      */
     heading: PropTypes.string,
-}
+};
 
 Stopwatch.defaultProps = {
     heading: 'Stopwatch Timer'
-}
+};
 
-export default Stopwatch
+export default Stopwatch;
