@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStop, faRedo, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import { start, stop } from './Controls'
-import wrapper from './Wrapper'
+import { reset, start, stop } from './Controls'
 
 const Timer = ({heading}) => {
     const [startTime, setStartTime] = useState();
@@ -15,6 +12,7 @@ const Timer = ({heading}) => {
     const [initialTime, setInitialTime] = useState();
     const [runningTime, setRunningTime] = useState(time);
     const [running, setRunning] = useState(false);
+    const [freezeInput, setFreezeInput] = useState(false);
     const [buttonDisplay, setButtonDisplay] = useState({
         start: 'block',
         stop: 'none',
@@ -30,13 +28,17 @@ const Timer = ({heading}) => {
         setTime(newTime)
     }
 
+    const renderInputField = (name, placeholder, value) => {
+        return <input type='number' name={name} placeholder={placeholder} value={value} disabled={freezeInput} onChange={onChange} />
+    }
+
     const inputTime = () => {
         return (
             <div className='timer'>
                 <form>
-                    <input type='number' name='hrs' placeholder='Hrs' value={time.hrs} disabled={running} onChange={onChange} />
-                    <input type='number' name='mins' placeholder='Mins' value={time.mins} disabled={running} onChange={onChange} />
-                    <input type='number' name='secs' placeholder='Secs' value={time.secs} disabled={running} onChange={onChange} />
+                    {renderInputField('hrs', 'Hours', time.hrs)}
+                    {renderInputField('mins', 'Minutes', time.mins)}
+                    {renderInputField('secs', 'Seconds', time.secs)}
                 </form>
             </div>
         );
@@ -51,10 +53,11 @@ const Timer = ({heading}) => {
 
     const startTimer = () => {
         if(checkValidTime()) {
+            setFreezeInput(true);
             setInitialTime(((time.hrs * 60 * 60) + (time.mins * 60) + (time.secs)));
             setRunning(true);
             !startTime && setStartTime(Date.now());
-            setButtonDisplay({start: 'none', stop: 'block', reset: 'none'});
+            setButtonDisplay({start: 'none', stop: 'block', reset: 'block'});
         }
     }
 
@@ -62,6 +65,17 @@ const Timer = ({heading}) => {
         setRunning(false);
         setStartTime();
         setButtonDisplay({start: 'block', stop: 'none', reset: 'block'});
+    }
+
+    const resetTimer = () => {
+        setFreezeInput(false);
+        stopTimer();
+        setButtonDisplay({start: 'block', stop: 'none', reset: 'none'});
+        setTime({
+            hrs: 0,
+            mins: 0,
+            secs: 0
+        });
     }
 
     /**
@@ -80,7 +94,7 @@ const Timer = ({heading}) => {
         const currentTime = initialTime - lapsedTime;
 
         const newTime = {
-            hrs: Math.floor((currentTime/60)/60/60),
+            hrs: Math.floor((currentTime/60)/60),
             mins: Math.floor((currentTime/60) % 60),
             secs: currentTime % 60
         }
@@ -115,6 +129,7 @@ const Timer = ({heading}) => {
             <div className='timer-controls'>
                 {start(startTimer, buttonDisplay.start)}
                 {stop(stopTimer, buttonDisplay.stop)}
+                {reset(resetTimer, buttonDisplay.reset)}
             </div>
         </div>
     )
