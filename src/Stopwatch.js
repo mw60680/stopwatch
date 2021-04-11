@@ -42,6 +42,7 @@ const Stopwatch = ({ heading }) => {
         setTime({hrs: 0, min: 0, sec: 0, ms: 0})
         setStartTime();
         setButtonDisplay({start: 'block', stop: 'none', reset: 'none', lap: 'none'});
+        setLaps([]);
     }
 
     const lapTimer = () => {
