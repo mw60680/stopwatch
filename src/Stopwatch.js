@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop, faRedo, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Stopwatch = ({ heading }) => {
+    /**
+     * States used in the function
+     */
     const [running, setRunning] = useState(false);
     const [startTime, setStartTime] = useState();
     const [time, setTime] = useState({
@@ -19,19 +22,11 @@ const Stopwatch = ({ heading }) => {
         lap: 'none'
     });
     const [laps, setLaps] = useState([]);
+    // end of states
 
-    const parseTime = () => {
-        const now = Date.now();
-        const diff = now - startTime;
-
-        const ms = diff % 1000;
-        const sec = Math.floor((diff/1000)%60);
-        const min = Math.floor(((diff/1000)/60)%60);
-        const hrs = Math.floor(((diff/1000)/60)/60);
-
-        return {hrs, min, sec, ms};
-    }
-
+    /**
+     * Stopwatch control functions
+     */
     const startTimer = () => {
         setRunning(true);
         !startTime && setStartTime(Date.now());
@@ -52,7 +47,9 @@ const Stopwatch = ({ heading }) => {
     const lapTimer = () => {
         setLaps(laps => [...laps, time]);
     }
+    // End of stopwatch control functions
 
+    // Component render functions
     const wrapper = (item, display) => <div style={{display}}>{item}</div>;
 
     const start = () => wrapper(<FontAwesomeIcon icon={faPlay} onClick={startTimer} size={'2x'} />, buttonDisplay.start);
@@ -67,18 +64,46 @@ const Stopwatch = ({ heading }) => {
         return (
             <div className='lap-times'>
                 {
-                    laps.map(item => {
-                        return (<div>{item.hrs} {item.min} {item.sec} {item.ms}</div>)
+                    laps.map((item, index) => {
+                        return (<div key={index}>{index}. {item.hrs}:{item.min}:{item.sec}:{item.ms}</div>)
                     })
                 }
             </div>
         );
     };
+    // End of component rendering
 
+    /**
+     * Convert system time to object {hrs, min, sec, ms}
+     */
+    const parseTime = () => {
+        const now = Date.now();
+        const diff = now - startTime;
+
+        const ms = diff % 1000;
+        const sec = Math.floor((diff/1000)%60);
+        const min = Math.floor(((diff/1000)/60)%60);
+        const hrs = Math.floor(((diff/1000)/60)/60);
+
+        return {hrs, min, sec, ms};
+    }
+
+    /**
+     * update time to be displayed
+     */
+    const updateTime = () => {
+        setTimeout(setTime(parseTime()), 10);
+    }
+
+    /**
+     * create repeat rendering to update timer on screen
+     * Dependency array - time state and timer running flag
+     */
     useEffect(() => {
-        running && setTimeout(setTime(parseTime()), 10);
+        running && updateTime();
     }, [time, running]);
     
+    // main export function
     const timer = () => {
         return (
             <Fragment>
