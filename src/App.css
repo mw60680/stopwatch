@@ -6,10 +6,7 @@
 	flex-direction: column;
 }
 
-.timer {
-}
-
-.timer-values {
+.timer .timer-values {
 	font-size: 70px;
 }
 

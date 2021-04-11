@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlay, faStop, faRedo } from '@fortawesome/free-solid-svg-icons';
+import { faPlay, faStop, faRedo, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
 
 const Stopwatch = ({ heading }) => {
     const [running, setRunning] = useState(false);
@@ -15,8 +15,10 @@ const Stopwatch = ({ heading }) => {
     const [buttonDisplay, setButtonDisplay] = useState({
         start: 'block',
         stop: 'none',
-        reset: 'none'
+        reset: 'none',
+        lap: 'none'
     });
+    const [laps, setLaps] = useState([]);
 
     const parseTime = () => {
         const now = Date.now();
@@ -33,18 +35,22 @@ const Stopwatch = ({ heading }) => {
     const startTimer = () => {
         setRunning(true);
         !startTime && setStartTime(Date.now());
-        setButtonDisplay({start: 'none', stop: 'block', reset: 'none'});
+        setButtonDisplay({start: 'none', stop: 'block', reset: 'none', lap: 'block'});
     }
 
     const stopTimer = () => {
         setRunning(false);
-        setButtonDisplay({start: 'block', stop: 'none', reset: 'block'});
+        setButtonDisplay({start: 'block', stop: 'none', reset: 'block', lap: 'none'});
     }
 
     const resetTimer = () => {
         setTime({hrs: 0, min: 0, sec: 0, ms: 0})
         setStartTime();
-        setButtonDisplay({start: 'block', stop: 'none', reset: 'none'});
+        setButtonDisplay({start: 'block', stop: 'none', reset: 'none', lap: 'none'});
+    }
+
+    const lapTimer = () => {
+        setLaps(laps => [...laps, time]);
     }
 
     const wrapper = (item, display) => <div style={{display}}>{item}</div>;
@@ -54,6 +60,20 @@ const Stopwatch = ({ heading }) => {
     const stop = () => wrapper(<FontAwesomeIcon icon={faStop} onClick={stopTimer} size={'2x'} />, buttonDisplay.stop);
 
     const reset = () => wrapper(<FontAwesomeIcon icon={faRedo} onClick={resetTimer} size={'2x'} />, buttonDisplay.reset);
+
+    const lap = () => wrapper(<FontAwesomeIcon icon={faSyncAlt} onClick={lapTimer} size={'2x'} />, buttonDisplay.lap);
+
+    const lapTimes = () => {
+        return (
+            <div className='lap-times'>
+                {
+                    laps.map(item => {
+                        return (<div>{item.hrs} {item.min} {item.sec} {item.ms}</div>)
+                    })
+                }
+            </div>
+        );
+    };
 
     useEffect(() => {
         running && setTimeout(setTime(parseTime()), 10);
@@ -78,7 +98,9 @@ const Stopwatch = ({ heading }) => {
                     {start()}
                     {stop()}
                     {reset()}
+                    {lap()}
                 </div>
+                {laps.length > 0 && lapTimes()}
             </Fragment>
         );
     }
