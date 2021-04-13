@@ -1,0 +1,250 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders learn react link 1`] = `
+<DocumentFragment>
+  <header>
+    <div
+      name="stopwatch"
+    >
+      Stopwatch
+    </div>
+    <div
+      name="countdown"
+    >
+      Countdown
+    </div>
+  </header>
+  <div
+    class="timer-container"
+  >
+    <div
+      style="display: none;"
+    >
+      <div>
+        Countdown
+        <div
+          class="timer"
+        >
+          <form>
+            <input
+              max="60"
+              min="0"
+              name="hrs"
+              placeholder="Hours"
+              type="number"
+              value="00"
+            />
+            <input
+              max="60"
+              min="0"
+              name="mins"
+              placeholder="Minutes"
+              type="number"
+              value="00"
+            />
+            <input
+              max="60"
+              min="0"
+              name="secs"
+              placeholder="Seconds"
+              type="number"
+              value="00"
+            />
+          </form>
+        </div>
+        <div
+          class="timer-controls"
+        >
+          <div
+            style="display: block;"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-play fa-w-14 fa-2x "
+              data-icon="play"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            style="display: none;"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-stop fa-w-14 fa-2x "
+              data-icon="stop"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 448 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+          <div
+            style="display: none;"
+          >
+            <svg
+              aria-hidden="true"
+              class="svg-inline--fa fa-redo fa-w-16 fa-2x "
+              data-icon="redo"
+              data-prefix="fas"
+              focusable="false"
+              role="img"
+              viewBox="0 0 512 512"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"
+                fill="currentColor"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="display: block;"
+    >
+      <div
+        class="heading"
+      >
+        <h1>
+          Stopwatch Timer
+        </h1>
+      </div>
+      <div
+        class="timer"
+      >
+        <span
+          class="timer-values"
+        >
+          00
+        </span>
+        <span
+          class="timer-values"
+        >
+           : 
+        </span>
+        <span
+          class="timer-values"
+        >
+          00
+        </span>
+        <span
+          class="timer-values"
+        >
+           : 
+        </span>
+        <span
+          class="timer-values"
+        >
+          00
+        </span>
+        <span
+          class="timer-values"
+        >
+           : 
+        </span>
+        <span
+          class="timer-values"
+        >
+          000
+        </span>
+      </div>
+      <div
+        class="timer-controls"
+      >
+        <div
+          style="display: block;"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-play fa-w-14 fa-2x "
+            data-icon="play"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          style="display: none;"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-stop fa-w-14 fa-2x "
+            data-icon="stop"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 448 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          style="display: none;"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-redo fa-w-16 fa-2x "
+            data-icon="redo"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M500.33 0h-47.41a12 12 0 0 0-12 12.57l4 82.76A247.42 247.42 0 0 0 256 8C119.34 8 7.9 119.53 8 256.19 8.1 393.07 119.1 504 256 504a247.1 247.1 0 0 0 166.18-63.91 12 12 0 0 0 .48-17.43l-34-34a12 12 0 0 0-16.38-.55A176 176 0 1 1 402.1 157.8l-101.53-4.87a12 12 0 0 0-12.57 12v47.41a12 12 0 0 0 12 12h200.33a12 12 0 0 0 12-12V12a12 12 0 0 0-12-12z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+        <div
+          style="display: none;"
+        >
+          <svg
+            aria-hidden="true"
+            class="svg-inline--fa fa-sync-alt fa-w-16 fa-2x "
+            data-icon="sync-alt"
+            data-prefix="fas"
+            focusable="false"
+            role="img"
+            viewBox="0 0 512 512"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M370.72 133.28C339.458 104.008 298.888 87.962 255.848 88c-77.458.068-144.328 53.178-162.791 126.85-1.344 5.363-6.122 9.15-11.651 9.15H24.103c-7.498 0-13.194-6.807-11.807-14.176C33.933 94.924 134.813 8 256 8c66.448 0 126.791 26.136 171.315 68.685L463.03 40.97C478.149 25.851 504 36.559 504 57.941V192c0 13.255-10.745 24-24 24H345.941c-21.382 0-32.09-25.851-16.971-40.971l41.75-41.749zM32 296h134.059c21.382 0 32.09 25.851 16.971 40.971l-41.75 41.75c31.262 29.273 71.835 45.319 114.876 45.28 77.418-.07 144.315-53.144 162.787-126.849 1.344-5.363 6.122-9.15 11.651-9.15h57.304c7.498 0 13.194 6.807 11.807 14.176C478.067 417.076 377.187 504 256 504c-66.448 0-126.791-26.136-171.315-68.685L48.97 471.03C33.851 486.149 8 475.441 8 454.059V320c0-13.255 10.745-24 24-24z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
