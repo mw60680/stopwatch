@@ -29,7 +29,7 @@ const Timer = ({heading}) => {
     }
 
     const renderInputField = (name, placeholder, value) => {
-        return <input type='number' name={name} placeholder={placeholder} value={value} disabled={freezeInput} onChange={onChange} />
+        return <input type='number' min={0} max={60} name={name} placeholder={placeholder} value={value} disabled={freezeInput} onChange={onChange} />
     }
 
     const inputTime = () => {
