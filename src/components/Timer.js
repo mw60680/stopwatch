@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { reset, start, stop } from './Controls'
+import { reset, start, stop } from './controls'
 
 const Timer = ({heading}) => {
     const [startTime, setStartTime] = useState();
