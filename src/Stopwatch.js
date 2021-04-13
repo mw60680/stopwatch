@@ -22,6 +22,7 @@ const Stopwatch = ({ heading }) => {
         lap: 'none'
     });
     const [laps, setLaps] = useState([]);
+    const [lapsedTime, setLapsedTime] = useState(0);
     // end of states
 
     /**
@@ -29,11 +30,16 @@ const Stopwatch = ({ heading }) => {
      */
     const startTimer = () => {
         setRunning(true);
-        !startTime && setStartTime(Date.now());
+        setStartTime(Date.now());
         setButtonDisplay({start: 'none', stop: 'block', reset: 'none', lap: 'block'});
     }
 
     const stopTimer = () => {
+        const now = Date.now();
+        const diff = now - startTime;
+        setLapsedTime((currentTime) => {
+            return currentTime + diff;
+        });
         setRunning(false);
         setButtonDisplay({start: 'block', stop: 'none', reset: 'block', lap: 'none'});
     }
@@ -79,7 +85,7 @@ const Stopwatch = ({ heading }) => {
      */
     const parseTime = () => {
         const now = Date.now();
-        const diff = now - startTime;
+        const diff = now - startTime + lapsedTime;
 
         const ms = diff % 1000;
         const sec = Math.floor((diff/1000)%60);
