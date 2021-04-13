@@ -36,9 +36,18 @@ const Timer = ({heading}) => {
         return (
             <div className='timer'>
                 <form>
-                    {renderInputField('hrs', 'Hours', time.hrs)}
-                    {renderInputField('mins', 'Minutes', time.mins)}
-                    {renderInputField('secs', 'Seconds', time.secs)}
+                    {renderInputField('hrs', 'Hours', time.hrs.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
+                    {renderInputField('mins', 'Minutes', time.mins.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
+                    {renderInputField('secs', 'Seconds', time.secs.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
                 </form>
             </div>
         );

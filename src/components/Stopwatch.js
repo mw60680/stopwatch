@@ -47,6 +47,7 @@ const Stopwatch = ({ heading }) => {
     const resetTimer = () => {
         setTime({hrs: 0, min: 0, sec: 0, ms: 0})
         setStartTime();
+        setLapsedTime(0);
         setButtonDisplay({start: 'block', stop: 'none', reset: 'none', lap: 'none'});
         setLaps([]);
     }
@@ -118,13 +119,33 @@ const Stopwatch = ({ heading }) => {
                     <h1>{ heading }</h1>
                 </div>
                 <div className='timer'>
-                    <span className='timer-values'>{time.hrs}</span>
+                    <span className='timer-values'>
+                        {time.hrs.toLocaleString('en-US', {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false
+                        })}
+                    </span>
                     <span className='timer-values'> : </span>
-                    <span className='timer-values'>{time.min}</span>
+                    <span className='timer-values'>
+                        {time.min.toLocaleString('en-US', {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false
+                        })}
+                    </span>
                     <span className='timer-values'> : </span>
-                    <span className='timer-values'>{time.sec}</span>
+                    <span className='timer-values'>
+                        {time.sec.toLocaleString('en-US', {
+                            minimumIntegerDigits: 2,
+                            useGrouping: false
+                        })}
+                    </span>
                     <span className='timer-values'> : </span>
-                    <span className='timer-values'>{time.ms}</span>
+                    <span className='timer-values'>
+                        {time.ms.toLocaleString('en-US', {
+                            minimumIntegerDigits: 3,
+                            useGrouping: false
+                        })}
+                    </span>
                 </div>
                 <div className='timer-controls'>
                     {start()}
