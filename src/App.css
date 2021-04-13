@@ -31,3 +31,9 @@ header > div {
 .timer-controls > *:hover {
 	cursor: pointer;
 }
+
+@media screen and (max-width: 1024px) {
+	.timer-container {
+		min-height: unset;
+	}
+}

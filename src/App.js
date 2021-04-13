@@ -4,7 +4,6 @@ import Stopwatch from './Stopwatch';
 import Timer from './Timer';
 import Nav from './components/Nav';
 import { Fragment, useState, useEffect } from 'react';
-import constants from './config/constants.json'
 import wrapper from './Wrapper'
 
 function App() {
