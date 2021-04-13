@@ -1,10 +1,10 @@
 import './App.css';
-import './Stopwatch'
-import Stopwatch from './Stopwatch';
-import Timer from './Timer';
+import './components/Stopwatch'
+import Stopwatch from './components/Stopwatch';
+import Timer from './components/Timer';
 import Nav from './components/Nav';
 import { Fragment, useState, useEffect } from 'react';
-import wrapper from './Wrapper'
+import wrapper from './components/Wrapper'
 
 function App() {
   const initialState = {

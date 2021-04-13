@@ -32,6 +32,11 @@ header > div {
 	cursor: pointer;
 }
 
+.lap-times {
+	max-height: 25vh;
+	overflow-y: scroll;
+}
+
 @media screen and (max-width: 1024px) {
 	.timer-container {
 		min-height: unset;

@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faStop, faRedo, faSyncAlt } from '@fortawesome/free-solid-svg-icons';
-import wrapper from './Wrapper'
+import wrapper from '../Wrapper'
 
 const start = (control, display) => wrapper(<FontAwesomeIcon icon={faPlay} onClick={control} size={'2x'} />, display);
 

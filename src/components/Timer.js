@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
-import { reset, start, stop } from './Controls'
+import { reset, start, stop } from './controls'
 
 const Timer = ({heading}) => {
     const [startTime, setStartTime] = useState();
@@ -29,16 +29,25 @@ const Timer = ({heading}) => {
     }
 
     const renderInputField = (name, placeholder, value) => {
-        return <input type='number' name={name} placeholder={placeholder} value={value} disabled={freezeInput} onChange={onChange} />
+        return <input type='number' min={0} max={60} name={name} placeholder={placeholder} value={value} disabled={freezeInput} onChange={onChange} />
     }
 
     const inputTime = () => {
         return (
             <div className='timer'>
                 <form>
-                    {renderInputField('hrs', 'Hours', time.hrs)}
-                    {renderInputField('mins', 'Minutes', time.mins)}
-                    {renderInputField('secs', 'Seconds', time.secs)}
+                    {renderInputField('hrs', 'Hours', time.hrs.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
+                    {renderInputField('mins', 'Minutes', time.mins.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
+                    {renderInputField('secs', 'Seconds', time.secs.toLocaleString('en-US', {
+                        minimumIntegerDigits: 2,
+                        useGrouping: false
+                    }))}
                 </form>
             </div>
         );
