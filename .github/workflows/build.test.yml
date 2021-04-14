@@ -5,7 +5,10 @@ name: Stopwatch App Build and Test
 
 on:
     push:
+<<<<<<< HEAD
         branches: [^master]
+=======
+>>>>>>> master
 
 jobs:
     build:
