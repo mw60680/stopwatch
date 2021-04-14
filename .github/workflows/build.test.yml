@@ -5,6 +5,7 @@ name: Stopwatch App Build and Test
 
 on:
     push:
+        branches: '*/*'
 
 jobs:
     build:
