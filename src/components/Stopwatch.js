@@ -15,6 +15,7 @@ const Stopwatch = ({ heading }) => {
         sec: 0,
         ms: 0
     });
+    const [runningTime, setRunningTime] = useState(time);
     const [buttonDisplay, setButtonDisplay] = useState({
         start: 'block',
         stop: 'none',
@@ -100,16 +101,23 @@ const Stopwatch = ({ heading }) => {
      * update time to be displayed
      */
     const updateTime = () => {
-        setTimeout(setTime(parseTime()), 10);
+        setTimeout(() => {
+            setTime(parseTime())
+        }, 10);
     }
 
     /**
      * create repeat rendering to update timer on screen
      * Dependency array - time state and timer running flag
      */
+     useEffect(() => {
+        setRunningTime(time);
+    }, [time])
+
+
     useEffect(() => {
         running && updateTime();
-    }, [time, running]);
+    }, [running, runningTime]);
     
     // main export function
     const timer = () => {
